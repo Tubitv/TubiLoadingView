@@ -1,4 +1,17 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
 
 android {
     compileSdkVersion 25
@@ -30,4 +43,26 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
+}
+
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+
+    pkg {
+        repo = 'com.tubitv.ui'
+        name = 'tubi-loading-view'
+        userOrg = 'tubitv'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/Tubitv/TubiLoadingView.git'
+
+        version {
+            name = '0.0.2'
+            desc = 'The first of the first'
+            released  = new Date()
+            vcsTag = '0.0.1'
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
 }
