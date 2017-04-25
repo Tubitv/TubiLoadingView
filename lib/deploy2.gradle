@@ -120,10 +120,10 @@
 //        vcsUrl = 'https://github.com/Tubitv/TubiLoadingView.git'
 //
 //        version {
-//            name = '0.0.2'
+//            name = '0.0.1'
 //            desc = 'The first of the first'
 //            released = new Date()
-//            vcsTag = '0.0.2'
+//            vcsTag = '0.0.1'
 //            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
 //        }
 //    }
