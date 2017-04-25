@@ -8,17 +8,6 @@ To include in your project, add this to your build.gradle file:
    compile 'com.tubitv.ui:tubi-loading-view:0.0.2@aar'
 ```
 
-Also add the repository to your main application build.gradle file:
-
-```
-allprojects {
-    repositories {
-        jcenter()
-        maven { url  "http://dl.bintray.com/tubitv/UI" }
-    }
-}
-```
-
 ========
 ### By
 Developers:
@@ -26,6 +15,17 @@ Developers:
 
 Designers: 
          [Artur Napierajczyk](https://www.behance.net/napierajczyk)
+
+
+#### In XML:
+
+```
+    <com.tubitv.ui.TubiLoadingView
+        android:id="@+id/tubiLoadingView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:rotation_duration_ms="2000"/>
+```
 
 ### License
 
