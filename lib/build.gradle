@@ -14,8 +14,7 @@ buildscript {
     }
 }
 
-// This is the library version used when deploying the artifact
-def libVersionName = "0.0.2"
+
 
 android {
     compileSdkVersion 25
@@ -24,8 +23,10 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 2
-        versionName libVersionName
+        // This is the library version used when deploying the artifact
+        version = "0.0.1"
+        versionCode 1
+        versionName version
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -49,4 +50,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-ext.libVersionName=libVersionName; apply from: 'deploy2.gradle'
+//ext.libVersionName=libVersionName; apply from: 'deploy2.gradle'

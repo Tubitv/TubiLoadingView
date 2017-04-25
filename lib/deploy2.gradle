@@ -1,132 +1,132 @@
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
-
-
-def siteUrl = 'https://github.com/Tubitv/TubiLoadingView'      // Homepage URL of the library
-def gitUrl = 'https://github.com/Tubitv/TubiLoadingView.git'   // Git repository URL
-group = 'com.tubitv.ui'                                        // Maven Group ID for the artifact
-
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-
-                // Add your description here
-                name 'com.tubitv.ui:tubi-loading-view'
-                description = 'A spinning circular loading view'
-                url siteUrl
-
-                // Set your license
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'StoyanD'
-                        name 'Stoyan Dimitrov'
-                        email 'support@tubitv.com'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
-}
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            artifact sourcesJar
-            artifact javadocJar
-            groupId 'com.tubitv.ui'
-            artifactId 'tubi-loading-view'
-            version '0.0.12'
-        }
-    }
-}
-
-Properties properties = new Properties()
-File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
-properties.load(propFile.newDataInputStream())
-
-// https://github.com/bintray/gradle-bintray-plugin
-bintray {
-    println properties.getProperty("bintray.user")
-    println properties.getProperty("bintray.apikey")
-    println libVersionName
-
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-
-
-    configurations = ['archives']
-    publications = ['MyPublication']
-
+//apply plugin: 'maven'
+//apply plugin: 'maven-publish'
+//
+//
+//def siteUrl = 'https://github.com/Tubitv/TubiLoadingView'      // Homepage URL of the library
+//def gitUrl = 'https://github.com/Tubitv/TubiLoadingView.git'   // Git repository URL
+//group = 'com.tubitv.ui'                                        // Maven Group ID for the artifact
+//
+//install {
+//    repositories.mavenInstaller {
+//        // This generates POM.xml with proper parameters
+//        pom {
+//            project {
+//                packaging 'aar'
+//
+//                // Add your description here
+//                name 'com.tubitv.ui:tubi-loading-view'
+//                description = 'A spinning circular loading view'
+//                url siteUrl
+//
+//                // Set your license
+//                licenses {
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id 'StoyanD'
+//                        name 'Stoyan Dimitrov'
+//                        email 'support@tubitv.com'
+//                    }
+//                }
+//                scm {
+//                    connection gitUrl
+//                    developerConnection gitUrl
+//                    url siteUrl
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//
+//artifacts {
+//    archives javadocJar
+//    archives sourcesJar
+//}
+//
+//publishing {
+//    publications {
+//        MyPublication(MavenPublication) {
+//            artifact sourcesJar
+//            artifact javadocJar
+//            groupId 'com.tubitv.ui'
+//            artifactId 'tubi-loading-view'
+//            version '0.0.12'
+//        }
+//    }
+//}
+//
+//Properties properties = new Properties()
+//File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
+//properties.load(propFile.newDataInputStream())
+//
+//// https://github.com/bintray/gradle-bintray-plugin
+//bintray {
+//    println properties.getProperty("bintray.user")
+//    println properties.getProperty("bintray.apikey")
+//    println libVersionName
+//
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+//
+//
+//    configurations = ['archives']
+//    publications = ['MyPublication']
+//
+////    pkg {
+////        repo = 'UI'
+////        name = 'tubi-loading-view'
+////        userOrg = 'tubitv'
+////        websiteUrl = siteUrl
+////        vcsUrl = gitUrl
+////        licenses = ["Apache-2.0"]
+////        publish = true
+////        version {
+////            name = libVersionName
+////            version = libVersionName
+////            desc = 'A spinning circular loading view'
+////            released = new Date()
+////            vcsTag = libVersionName
+//////            gpg {
+//////                sign = true //Determines whether to GPG sign the files. The default is false
+//////                passphrase = properties.getProperty("bintray.gpg.password") //Optional. The passphrase for GPG signing'
+//////            }
+////        }
+////    }
+//
 //    pkg {
 //        repo = 'UI'
 //        name = 'tubi-loading-view'
 //        userOrg = 'tubitv'
-//        websiteUrl = siteUrl
-//        vcsUrl = gitUrl
-//        licenses = ["Apache-2.0"]
-//        publish = true
+//        licenses = ['MIT']
+//        vcsUrl = 'https://github.com/Tubitv/TubiLoadingView.git'
+//
 //        version {
-//            name = libVersionName
-//            version = libVersionName
-//            desc = 'A spinning circular loading view'
+//            name = '0.0.2'
+//            desc = 'The first of the first'
 //            released = new Date()
-//            vcsTag = libVersionName
-////            gpg {
-////                sign = true //Determines whether to GPG sign the files. The default is false
-////                passphrase = properties.getProperty("bintray.gpg.password") //Optional. The passphrase for GPG signing'
-////            }
+//            vcsTag = '0.0.2'
+//            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
 //        }
 //    }
-
-    pkg {
-        repo = 'UI'
-        name = 'tubi-loading-view'
-        userOrg = 'tubitv'
-        licenses = ['MIT']
-        vcsUrl = 'https://github.com/Tubitv/TubiLoadingView.git'
-
-        version {
-            name = '0.0.2'
-            desc = 'The first of the first'
-            released = new Date()
-            vcsTag = '0.0.2'
-            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
-        }
-    }
-
-
-}
+//
+//
+//}

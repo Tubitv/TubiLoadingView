@@ -1,0 +1,42 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.tubitv.ui' // CREATE A GROUP ID FOR YOUR LIBRARY
+nameArtifact = 'TubiLoadingView'
+siteUrl = 'https://github.com/Tubitv/TubiLoadingView'
+gitUrl = 'https://github.com/Tubitv/TubiLoadingView.git'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId group // CREATE A GROUP ID FOR YOUR LIBRARY
+                artifactId nameArtifact // THE NAME OF YOUR MODULE
+
+                name nameArtifact // YOUR LIBRARY NAME
+                description 'A spinning circular loading view' // YOUR LIBRARY DESCRIPTION
+                url siteUrl // YOUR SITE
+                inceptionYear '2017'
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'https://github.com/Tubitv/TubiLoadingView/blob/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'StoyanD' //YOUR ID
+                        name 'Stoyand Dimitrov' //YOUR NAME
+                        email 'support@tubitv.com' //YOUR EMAIL
+                    }
+                }
+                scm {
+                    connection gitUrl // YOUR GIT REPO
+                    developerConnection gitUrl // YOUR GIT REPO
+                    url siteUrl // YOUR SITE
+
+                }
+            }
+        }
+    }
+}
