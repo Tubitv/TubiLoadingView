@@ -1,6 +1,10 @@
-def siteUrl = 'https://github.com/lopspower/CircularImageView'      // Homepage URL of the library
-def gitUrl = 'https://github.com/lopspower/CircularImageView.git'   // Git repository URL
-group = "com.mikhaellopez"                                          // Maven Group ID for the artifact
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+
+def siteUrl = 'https://github.com/Tubitv/TubiLoadingView'      // Homepage URL of the library
+def gitUrl = 'https://github.com/Tubitv/TubiLoadingView.git'   // Git repository URL
+group = 'com.tubitv.ui'                                        // Maven Group ID for the artifact
 
 install {
     repositories.mavenInstaller {
@@ -10,8 +14,8 @@ install {
                 packaging 'aar'
 
                 // Add your description here
-                name 'com.mikhaellopez:circularimageview' // TODO
-                description = 'Description of your project HERE' // TODO
+                name 'com.tubitv.ui:tubi-loading-view'
+                description = 'A spinning circular loading view'
                 url siteUrl
 
                 // Set your license
@@ -23,9 +27,9 @@ install {
                 }
                 developers {
                     developer {
-                        id 'lopspower' // TODO
-                        name 'Mikhael Lopez' // TODO
-                        email 'lopez.mikhael@gmail.com' // TODO
+                        id 'StoyanD'
+                        name 'Stoyan Dimitrov'
+                        email 'support@tubitv.com'
                     }
                 }
                 scm {
@@ -52,40 +56,77 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
 artifacts {
     archives javadocJar
     archives sourcesJar
 }
 
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            artifact sourcesJar
+            artifact javadocJar
+            groupId 'com.tubitv.ui'
+            artifactId 'tubi-loading-view'
+            version '0.0.12'
+        }
+    }
+}
+
 Properties properties = new Properties()
-properties.load(project.rootProject.file('lib/local.properties').newDataInputStream())
+File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
+properties.load(propFile.newDataInputStream())
+
 // https://github.com/bintray/gradle-bintray-plugin
 bintray {
     println properties.getProperty("bintray.user")
     println properties.getProperty("bintray.apikey")
+    println libVersionName
 
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
 
 
     configurations = ['archives']
+    publications = ['MyPublication']
+
+//    pkg {
+//        repo = 'UI'
+//        name = 'tubi-loading-view'
+//        userOrg = 'tubitv'
+//        websiteUrl = siteUrl
+//        vcsUrl = gitUrl
+//        licenses = ["Apache-2.0"]
+//        publish = true
+//        version {
+//            name = libVersionName
+//            version = libVersionName
+//            desc = 'A spinning circular loading view'
+//            released = new Date()
+//            vcsTag = libVersionName
+////            gpg {
+////                sign = true //Determines whether to GPG sign the files. The default is false
+////                passphrase = properties.getProperty("bintray.gpg.password") //Optional. The passphrase for GPG signing'
+////            }
+//        }
+//    }
+
     pkg {
-        repo = 'com.tubitv.ui'
+        repo = 'UI'
         name = 'tubi-loading-view'
         userOrg = 'tubitv'
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/Tubitv/TubiLoadingView.git'
+
         version {
-            name = '0.0.2s'
+            name = '0.0.2'
             desc = 'The first of the first'
-            released  = new Date()
-            vcsTag = '0.0.2s'
-//            gpg {
-//                sign = true //Determines whether to GPG sign the files. The default is false
-//                passphrase = properties.getProperty("bintray.gpg.password") //Optional. The passphrase for GPG signing'
-//            }
+            released = new Date()
+            vcsTag = '0.0.2'
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }
+
+
 }
