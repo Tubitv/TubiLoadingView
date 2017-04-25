@@ -7,7 +7,7 @@ To include in your project, add this to your build.gradle file:
    //TubiLoadingView
    compile 'com.tubitv.ui:tubi-loading-view:0.0.2@aar'
 ```
-
+![Image](app/src/main/res/raw/github_img.png)
 ========
 ### By
 Developers:
