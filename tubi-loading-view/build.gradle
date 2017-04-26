@@ -14,8 +14,7 @@ buildscript {
     }
 }
 
-// This is the library version used when deploying the artifact
-def libVersionName = "0.0.2"
+def libVersion = "0.0.2"
 
 android {
     compileSdkVersion 25
@@ -25,7 +24,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 2
-        versionName libVersionName
+        versionName libVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -49,4 +48,37 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-ext.libVersionName=libVersionName; apply from: 'deploy2.gradle'
+Properties properties = new Properties()
+File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
+properties.load(propFile.newDataInputStream())
+
+ext {
+    bintrayUser = properties.getProperty("bintray.user")
+    bintrayKey = properties.getProperty("bintray.apikey")
+
+    bintrayRepo = 'UI'
+    bintrayName = 'TubiLoadingView'
+    bintrayOrg = 'tubitv'
+
+    publishedGroupId = 'com.tubitv.ui'
+    libraryName = 'TubiLoadingView'
+    artifact = 'tubi-loading-view'
+
+    libraryDescription = 'A spinning circular loading view'
+
+    siteUrl = 'https://github.com/Tubitv/TubiLoadingView'
+    gitUrl = 'https://github.com/Tubitv/TubiLoadingView.git'
+
+    libraryVersion = libVersion
+
+    developerId = 'StoyanD'
+    developerName = 'Stoyan Dimitrov'
+    developerEmail = 'support@tubitv.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://github.com/Tubitv/TubiLoadingView/blob/master/LICENSE'
+    allLicenses = ["MIT"]
+}
+
+apply from: 'https://raw.githubusercontent.com/Tubitv/BintrayGradle/master/install.gradle'
+apply from: 'https://raw.githubusercontent.com/Tubitv/BintrayGradle/master/bintray.gradle'
