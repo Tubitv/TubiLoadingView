@@ -9,6 +9,9 @@ To include in your project, add this to your build.gradle file:
 ```
 ![Image](app/src/main/res/raw/github_img.gif)
 ========
+### Like us on bintray :)  
+[![IMAGE ALT TEXT HERE](https://www.bintray.com/docs/images/bintray_badge_color.png "You are awesome!")](https://bintray.com/tubitv/UI/TubiLoadingView?source=watch)
+
 ### By
 Developers:
          [Stoyan Dimitrov](https://github.com/StoyanD)
