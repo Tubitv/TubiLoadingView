@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="TubiLoadingView">
         <attr name="rotation_duration_ms" format="integer"/>
+        <attr name="tubi_loading_toggle" format="boolean"/>
     </declare-styleable>
 
 </resources>
