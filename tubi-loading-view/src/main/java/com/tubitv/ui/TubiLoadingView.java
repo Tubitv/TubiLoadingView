@@ -2,6 +2,7 @@ package com.tubitv.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.databinding.BindingAdapter;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -67,7 +68,7 @@ public class TubiLoadingView extends android.support.v7.widget.AppCompatImageVie
             TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs,
                     R.styleable.TubiLoadingView, 0, 0);
             try {
-                mRotationDuration = a.getInt(R.styleable.TubiLoadingView_rotation_duration_ms, DEFAULT_ROTATION_DURATION_MS);
+                mRotationDuration = a.getInt(R.styleable.TubiLoadingView_tubi_rotation_duration_ms, DEFAULT_ROTATION_DURATION_MS);
             } finally {
                 a.recycle();
             }
@@ -75,6 +76,22 @@ public class TubiLoadingView extends android.support.v7.widget.AppCompatImageVie
 
         mRotateAnim = AnimationUtils.loadAnimation(getContext(), R.anim.tubi_tv_loading_spinner_rotate);
         start();
+    }
+
+    /**
+     * Binding method for setting a observable object through databinding on this view allowing
+     * it to automatically change the play state of this view from {@link #start()} and {@link #stop()}
+     *
+     * @param loadingView The view to toggle
+     * @param start       True if we want the rotating spinner, false otherwise
+     */
+    @BindingAdapter("bind:tubi_loading_toggle")
+    public static void onTubiLoadingViewToggle(TubiLoadingView loadingView, boolean start) {
+        if (start) {
+            loadingView.start();
+        } else {
+            loadingView.stop();
+        }
     }
 
     /**
@@ -92,7 +109,7 @@ public class TubiLoadingView extends android.support.v7.widget.AppCompatImageVie
      * Stops the animation and makes the view gone
      */
     public void stop() {
-        if(!mIsRunning){//already stopped
+        if (!mIsRunning) {//already stopped
             return;
         }
         clearAnimation();
@@ -104,7 +121,7 @@ public class TubiLoadingView extends android.support.v7.widget.AppCompatImageVie
      * Starts the animation and makes the view visible
      */
     public void start() {
-        if(mIsRunning){//already running
+        if (mIsRunning) {//already running
             return;
         }
         mRotateAnim.setDuration(mRotationDuration);

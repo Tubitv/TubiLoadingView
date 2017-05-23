@@ -5,7 +5,7 @@ To include in your project, add this to your build.gradle file:
 
 ```
    //TubiLoadingView
-   compile 'com.tubitv.ui:tubi-loading-view:0.0.3@aar'
+   compile 'com.tubitv.ui:tubi-loading-view:0.0.4@aar'
 ```
 ![Image](app/src/main/res/raw/github_img.gif)
 ========
@@ -27,7 +27,17 @@ Designers:
         android:id="@+id/tubiLoadingView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:rotation_duration_ms="2000"/>
+        app:tubi_rotation_duration_ms="2000"/>
+```
+
+TubiLoadingView also supports databinding adapters:
+
+```
+<com.tubitv.ui.TubiLoadingView
+        android:id="@+id/tubiLoadingView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tubi_loading_toggle="@{observableObj.someBoolean}"/>
 ```
 
 ### License

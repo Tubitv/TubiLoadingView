@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="TubiLoadingView">
-        <attr name="rotation_duration_ms" format="integer"/>
+        <attr name="tubi_rotation_duration_ms" format="integer"/>
+        <attr name="tubi_loading_toggle" format="boolean"/>
     </declare-styleable>
 
 </resources>
