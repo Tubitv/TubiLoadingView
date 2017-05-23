@@ -68,7 +68,7 @@ public class TubiLoadingView extends android.support.v7.widget.AppCompatImageVie
             TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs,
                     R.styleable.TubiLoadingView, 0, 0);
             try {
-                mRotationDuration = a.getInt(R.styleable.TubiLoadingView_rotation_duration_ms, DEFAULT_ROTATION_DURATION_MS);
+                mRotationDuration = a.getInt(R.styleable.TubiLoadingView_tubi_rotation_duration_ms, DEFAULT_ROTATION_DURATION_MS);
             } finally {
                 a.recycle();
             }

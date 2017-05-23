@@ -27,7 +27,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline3"
             app:layout_constraintTop_toTopOf="parent"
-            app:rotation_duration_ms="2000"
+            app:tubi_rotation_duration_ms="2000"
             app:tubi_loading_toggle="@{obs.play}"/>
 
         <com.tubitv.ui.TubiLoadingView
